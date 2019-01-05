@@ -28,6 +28,11 @@
 			font-family: sans-serif;
 			white-space: nowrap;
 		}
+		div.bio {
+			white-space: normal;
+			max-width: 270px;
+			line-height: 13pt;
+		}
 		#centerbox {
 			display: flex;
 			min-width: 600px;
@@ -79,16 +84,20 @@
 			</div>
 			<div id="info">
 				<div class="head">About Me</div>
-				<div>Andreas Pardeike</div>
-				<div>Stockholm, Sweden</div>
-				<div>Twitter <a href="https://twitter.com/pardeike">@pardeike</a></div>
-				<div>LinkedIn <a href="https://se.linkedin.com/in/pardeike">pardeike</a></div>
+				<div>Andreas Pardeike<script>
+					var t = (new Date()).getTime() - (new Date(1966, 5, 29)).getTime();
+					var age = Math.floor(t / (1000 * 60 * 60 * 24 * 365.25));
+					document.write(", " + age);
+				</script></div>
+				<div>German, living in Stockholm/Sweden</div>
 				<div>Email: <a href="mailto:andreas@pardeike.net">andreas@pardeike.net</a></div>
 				<div>Mobile: <a href="tel:+46722120680">+46 722 120 680</a></div>
-				<div>Discord: <a href="http://bit.do/harmony-discord">Join</a></div>
+				<div>Online: <a href="https://twitter.com/pardeike">twitter</a> - <a href="http://bit.do/harmony-discord">discord</a> - <a href="https://www.twitch.tv/brrainz">twitch</a> - <a href="https://se.linkedin.com/in/pardeike">linkedin</a></div>
 				<div class="head">Projects</div>
 				<div>Harmony: <a href="https://harmony.pardeike.net">https://harmony.pardeike.net</a></div>
 				<div>GitHub: <a href="https://github.com/pardeike">https://github.com/pardeike</a></div>
+				<div class="head">About</div>
+				<div class="bio">Experienced iOS/macOS/node.js/.NET developer with 35+ years of professional software development background. Apple Developer since 1987 with focus on UX and application design. Specialties: Human interface design, building communities, usability and coaching management</div>
 			</div>
 		</div>
 	</body>
