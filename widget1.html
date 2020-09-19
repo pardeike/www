@@ -1,12 +1,24 @@
 <html>
-  <body>
-    <iframe
-      src="https://player.twitch.tv/?channel=sacriel&parent=www.pardeike.net"
-      height="450"
-      width="800"
-      frameborder="0"
-      scrolling="false"
-      allowfullscreen="true">
-    </iframe>
-  </body>
+<style>
+html, body, iframe {
+	padding: 0;
+	margin: 0;
+	background-color: black;
+}
+.ratio {
+	width: 100%;
+	display: grid;
+}
+.ratio > * {
+  grid-area: 1/1;
+}
+</style>
+<body onLoad="fix()">
+	<div class="ratio">
+		<svg viewBox="0 0 16 9"></svg>
+		<iframe id="twitch" width="100%" height="100%"
+			src="https://player.twitch.tv/?channel=sacriel&parent=www.pardeike.net"
+			frameborder="0" scrolling="false" allowfullscreen="true"></iframe>
+	</div>
+</body>
 </html>
