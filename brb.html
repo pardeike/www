@@ -27,14 +27,18 @@
 </head>
 
 <body>
-    <div id="headline"></div>
+    <div id="headline">We're about to begin</div>
     <div id="content"></div>
 </body>
 <script>
+    var state = 0
+    var alpha = 0
+    var pause = 0
+    var currentLines = []
     let headline = document.getElementById('headline')
     headline.innerText = decodeURIComponent(window.location.search.substring(1))
     let content = document.getElementById('content')
-    var lines = [
+    var allLines = [
         'Flipping All Bits',
         'TV Chef Prepping',
         'Calculating Parity',
@@ -51,30 +55,59 @@
         'Inhaling Deeply',
         'Precompiling Headers'
     ]
-    function fadeEffect(direction) {
-        var op = direction < 0 ? 1.0 : 0.0
-        content.style.opacity = op
-        var fadeEffect = setInterval(() => {
-            op += direction
-            content.style.opacity = op
-            if (content.style.opacity < 0 || content.style.opacity > 1)
-                clearInterval(fadeEffect)
-        }, 20)
-    }
-    function change() {
-        let n = Math.floor(Math.random() * lines.length)
-        var s = ''
-        while (true) {
-            s = lines[n]
-            if (s != content.innerText) break
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex
+        while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex)
+            currentIndex--
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]]
         }
-        content.innerText = s
-        fadeEffect(0.03)
-        setTimeout(() => fadeEffect(-0.04), 5000)
-        setTimeout(change, 6500)
+        return array
     }
-    content.style.opacity = 0
-    change()
+    function fade(direction, limit) {
+        alpha += direction
+        if ((limit == 0 && alpha < limit) || (limit == 1 && alpha > limit))
+            alpha = limit
+        content.style.opacity = alpha
+        return alpha == limit
+    }
+    function ticking() {
+        if (currentLines.length == 0)
+            currentLines = shuffle(allLines)
+        console.log(state)
+        switch (state) {
+            case 0:
+                content.innerText = currentLines.pop()
+                state = 1
+                break
+            case 1:
+                if (fade(0.03, 1)) {
+                    pause = 50
+                    state = 2
+                }
+                break
+            case 2:
+                if (--pause == 0)
+                    state = 3
+                break
+            case 3:
+                if (fade(-0.06, 0)) {
+                    pause = 10
+                    state = 4
+                    content.innerText = ''
+                }
+                break
+            case 4:
+                if (--pause == 0)
+                    state = 0
+                break
+        }
+        setTimeout(ticking, 50)
+    }
+    alpha = 0
+    fade(0, 0)
+    ticking()
 </script>
 
 </html>
