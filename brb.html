@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        body {
+            background-color: #333;
+        }
+
+        #headline {
+            font-family: 'SF Pro Display';
+            font-weight: light;
+            font-size: 36px;
+            color: white;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        #content {
+            font-family: 'SF Pro Display';
+            font-weight: bolder;
+            font-size: 100px;
+            letter-spacing: -2px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="headline"></div>
+    <div id="content"></div>
+</body>
+<script>
+    let headline = document.getElementById('headline')
+    headline.innerText = decodeURIComponent(window.location.search.substring(1))
+    let content = document.getElementById('content')
+    var lines = [
+        'Flipping All Bits',
+        'TV Chef Prepping',
+        'Calculating Parity',
+        'Preheating Oven',
+        'Stretching Muscles',
+        'Double Checking',
+        'Preflight Procedure',
+        'Counting Down',
+        'Waiting To Start',
+        'Being Nervous',
+        'Warming Up Tires',
+        'Turning Knobs',
+        'Checking The Clock',
+        'Inhaling Deeply',
+        'Precompiling Headers'
+    ]
+    function fadeEffect(direction) {
+        var op = direction < 0 ? 1.0 : 0.0
+        content.style.opacity = op
+        var fadeEffect = setInterval(() => {
+            op += direction
+            content.style.opacity = op
+            if (content.style.opacity < 0 || content.style.opacity > 1)
+                clearInterval(fadeEffect)
+        }, 20)
+    }
+    function change() {
+        let n = Math.floor(Math.random() * lines.length)
+        var s = ''
+        while (true) {
+            s = lines[n]
+            if (s != content.innerText) break
+        }
+        content.innerText = s
+        fadeEffect(0.03)
+        setTimeout(() => fadeEffect(-0.04), 5000)
+        setTimeout(change, 6500)
+    }
+    content.style.opacity = 0
+    change()
+</script>
+
+</html>
