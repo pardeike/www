@@ -43,19 +43,19 @@
     var allLines = [
         'Flipping All Bits',
         'TV Chef Prepping',
-        'Calculating Parity',
-        'Preheating Oven',
-        'Stretching Muscles',
-        'Double Checking',
-        'Preflight Procedure',
-        'Counting Down',
-        'Waiting To Start',
-        'Being Nervous',
-        'Warming Up Tires',
-        'Turning Knobs',
-        'Checking The Clock',
-        'Inhaling Deeply',
-        'Precompiling Headers'
+        //'Calculating Parity',
+        //'Preheating Oven',
+        //'Stretching Muscles',
+        //'Double Checking',
+        //'Preflight Procedure',
+        //'Counting Down',
+        //'Waiting To Start',
+        //'Being Nervous',
+        //'Warming Up Tires',
+        //'Turning Knobs',
+        //'Checking The Clock',
+        //'Inhaling Deeply',
+        //'Precompiling Headers'
     ]
     function shuffle(array) {
         let currentIndex = array.length, randomIndex
@@ -76,7 +76,7 @@
     }
     function ticking() {
         if (currentLines.length == 0)
-            currentLines = shuffle(allLines)
+            currentLines = shuffle([...allLines])
         switch (state) {
             case 0:
                 content.innerText = currentLines.pop()
