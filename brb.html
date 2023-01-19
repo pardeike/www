@@ -36,7 +36,9 @@
     var pause = 0
     var currentLines = []
     let headline = document.getElementById('headline')
-    headline.innerText = decodeURIComponent(window.location.search.substring(1))
+    let headText = window.location.search.substring(1)
+    if (headText)
+        headline.innerText = decodeURIComponent(headText)
     let content = document.getElementById('content')
     var allLines = [
         'Flipping All Bits',
@@ -75,7 +77,6 @@
     function ticking() {
         if (currentLines.length == 0)
             currentLines = shuffle(allLines)
-        console.log(state)
         switch (state) {
             case 0:
                 content.innerText = currentLines.pop()
